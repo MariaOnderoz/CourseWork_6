@@ -1,0 +1,92 @@
+[
+  {
+    "model": "mailing.client",
+    "pk": 1,
+    "fields": {
+      "email": "test1@mail.ru",
+      "first_name": "Иван",
+      "last_name": "Иванов",
+      "comment": "",
+      "owner": 1
+    }
+  },
+  {
+    "model": "mailing.client",
+    "pk": 2,
+    "fields": {
+      "email": "test2@mail.ru",
+      "first_name": "Петр",
+      "last_name": "Петров",
+      "comment": "",
+      "owner": 1
+    }
+  },
+  {
+    "model": "mailing.client",
+    "pk": 3,
+    "fields": {
+      "email": "mariaonderoz@xn--gmal-nza.com",
+      "first_name": "Мария",
+      "last_name": "Ондероз",
+      "comment": "",
+      "owner": 1
+    }
+  },
+  {
+    "model": "mailing.message",
+    "pk": 1,
+    "fields": {
+      "subject": "test1",
+      "content": "test1",
+      "owner": 1
+    }
+  },
+  {
+    "model": "mailing.message",
+    "pk": 2,
+    "fields": {
+      "subject": "test2",
+      "content": "test2",
+      "owner": 1
+    }
+  },
+  {
+    "model": "mailing.message",
+    "pk": 3,
+    "fields": {
+      "subject": "test3",
+      "content": "test3",
+      "owner": 1
+    }
+  },
+  {
+    "model": "mailing.mailsettings",
+    "pk": 3,
+    "fields": {
+      "send_time": "2024-06-24T06:00:00Z",
+      "periodicity": "daily",
+      "status": "created",
+      "message": 1,
+      "owner": 1,
+      "client": [
+        1,
+        2
+      ]
+    }
+  },
+  {
+    "model": "mailing.mailsettings",
+    "pk": 4,
+    "fields": {
+      "send_time": "2024-06-25T10:00:00Z",
+      "periodicity": "weekly",
+      "status": "created",
+      "message": 2,
+      "owner": 1,
+      "client": [
+        1,
+        2
+      ]
+    }
+  }
+]

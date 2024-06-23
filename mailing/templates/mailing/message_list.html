@@ -1,0 +1,28 @@
+{% extends 'mailing/base.html' %}
+{% block content %}
+
+<div class="container">
+    <div class="row text-center">
+        <div class="col-12 mb-5 pt-md-5 text-center">
+            <a class="btn btn-primary" href="{% url 'mailing:home' %}" role="button">Назад</a>
+            <a class="btn btn-primary" href="{% url 'mailing:client_create' %}" role="button">Добавить сообщение</a>
+        </div>
+    </div>
+    <div class="row text-center">
+        {% for object in object_list %}
+        <div class="col-3">
+            <div class="card mb-4 box-shadow">
+                <div class="card-header">
+                    <h6 class="my-0 font-weight-normal">{{ object.subject}}</h6>
+                </div>
+                <div class="card-body">
+                    <p>{{ object.email }}</p>
+                    <a class="btn btn-outline-primary" href="{% url 'mailing:message_detail' object.pk %}">Подробнее</a>
+                </div>
+            </div>
+         </div>
+     {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends 'mailing/base.html' %}
+{% load my_tags %}
+{% block content %}
+
+<div class="album py-5 bg-body-tertiary">
+    <div class="container">
+      <div class="col-12 mb-5 pt-md-5 text-center">
+          <a class="btn btn-primary" href="{% url 'mailing:home' %}" role="button">Назад</a>
+          <a class="btn btn-primary" href="{% url 'blog:blog_create' %}" role="button">Добавить отзыв</a>
+      </div>
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        {% for object in object_list %}
+          <div class="col-md-5">
+            <div class="card mb-4 shadow-sm">
+              {% if object.image %}
+                    <img src="{{ object.image | media_filter }}" class="card-img-top" alt="photo">
+              {% endif %}
+              <div class="card-body">
+                <p class="card-text">{{ object.title }}</p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    <a class="btn btn-primary mr-2 btn-sm" href="{% url 'blog:blog_detail' object.pk %}" role="button">Перейти</a>
+                    <a class="btn btn-primary mr-2 btn-sm" href="{% url 'blog:blog_update' object.pk %}" role="button">Редактировать</a>
+                    <a class="btn btn-primary mr-2 btn-sm" href="{% url 'blog:blog_delete' object.pk %}" role="button">Удалить</a>
+                    {% if object.is_published %}
+                    <a href="{% url 'blog:toggle_publish' object.pk %}" type="button"
+                       class="btn btn-sm btn-block btn-warning">Отменить</a>
+                    {% else %}
+                    <a href="{% url 'blog:toggle_publish' object.pk %}" type="button"
+                       class="btn btn-sm btn-block btn-success">Опубликовать</a>
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+</div>
+{% endblock %}
