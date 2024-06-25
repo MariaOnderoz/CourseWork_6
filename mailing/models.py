@@ -81,7 +81,7 @@ class MailingAttempt(models.Model):
     last_sending = models.DateTimeField(verbose_name='Дата и время последней попытки')
     status = models.CharField(max_length=50, choices=statuses, verbose_name='Статус попытки')
     server_responce = models.TextField(verbose_name='Ответ почтового сервера', **NULLABLE)
-    mail_settings = models.ForeignKey(MailSettings, on_delete=models.CASCADE, verbose_name='Настройка рассылки')
+    mail_settings = models.ForeignKey(MailSettings, on_delete=models.CASCADE, verbose_name='Настройка рассылки', **NULLABLE)
 
     def __str__(self):
         return f'{self.last_sending} {self.status}'

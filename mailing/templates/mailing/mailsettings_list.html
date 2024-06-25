@@ -3,7 +3,7 @@
 
 <div class="container">
     <div class="row text-center">
-        <<div class="col-12 mb-5 pt-md-5 text-center">
+        <div class="col-12 mb-5 pt-md-5 text-center">
             <a class="btn btn-primary" href="{% url 'mailing:home' %}" role="button">Назад</a>
             <a class="btn btn-primary" href="{% url 'mailing:client_create' %}" role="button">Добавить рассылку</a>
         </div>
@@ -14,10 +14,10 @@
         <div class="col-3">
             <div class="card mb-4 box-shadow">
                 <div class="card-header">
-                    <h6 class="my-0 font-weight-normal">{{ object.subject}}</h6>
+                    <h6 class="my-0 font-weight-normal">{{ object.message }}</h6>
                 </div>
                 <div class="card-body">
-                    <p>{{ object.email }}</p>
+                    <p>{{ object.status }}</p>
                     <a class="btn btn-outline-primary" href="{% url 'mailing:mail_settings_detail' object.pk %}">Подробнее</a>
                 </div>
             </div>
