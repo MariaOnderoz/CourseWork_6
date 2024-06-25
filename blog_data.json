@@ -1,0 +1,41 @@
+[
+  {
+    "model": "blog.blog",
+    "pk": 3,
+    "fields": {
+      "title": "Тест1",
+      "slug": null,
+      "content": "Тест1",
+      "image": "",
+      "created_at": "2024-06-23T06:07:35.135Z",
+      "is_published": false,
+      "views_counter": 19
+    }
+  },
+  {
+    "model": "blog.blog",
+    "pk": 4,
+    "fields": {
+      "title": "Тест",
+      "slug": "test",
+      "content": "Тест",
+      "image": "",
+      "created_at": "2024-06-23T06:08:00.317Z",
+      "is_published": false,
+      "views_counter": 11
+    }
+  },
+  {
+    "model": "blog.blog",
+    "pk": 5,
+    "fields": {
+      "title": "тест3",
+      "slug": "test3",
+      "content": "тест3",
+      "image": "",
+      "created_at": "2024-06-23T13:22:29.307Z",
+      "is_published": true,
+      "views_counter": 8
+    }
+  }
+]

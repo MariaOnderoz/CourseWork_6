@@ -1,0 +1,25 @@
+{% extends 'mailing/base.html' %}
+{% block content %}
+<div class="pricing-header px-3 py-3 pb-md-4 mx-auto text-center">
+    <p class="lead">Список попыток рассылки</p>
+</div>
+<div class="container">
+    <div class="row text-center">
+        {% for object in object_list %}
+        <div class="col-12">
+            <div class="card mb-4 box-shadow">
+                <div class="card-header">
+                    <h5 class="my-0 font-weight-normal">{{ object.mail_settings }}</h5>
+                    <br>
+                    <h6 class="my-0 font-weight-normal">{{ object.last_sending }}</h6>
+                    <h6 class="my-0 font-weight-normal">{{ object.status }}</h6>
+                    <h6 class="my-0 font-weight-normal">{{ object.server_response }}</h6>
+                    <br>
+                    <a href="" class="btn btn-lg btn-block btn-outline-primary">Назад</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
