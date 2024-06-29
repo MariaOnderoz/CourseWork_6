@@ -1,4 +1,4 @@
-from apscheduler.schedulers.background import BackgroundScheduler
+from apscheduler.schedulers.background import BlockingScheduler
 import smtplib
 from django.core.mail import send_mail
 from datetime import datetime, timedelta
@@ -57,7 +57,7 @@ def send_mailing():
 
 def start():
     """Функция запуска алгоритма отправки рассылки"""
-    scheduler = BackgroundScheduler()
+    scheduler = BlockingScheduler()
     scheduler.add_job(send_mailing, 'interval', seconds=60)
     scheduler.start()
 

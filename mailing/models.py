@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.utils import timezone
 from users.models import User
 
 NULLABLE = {"blank": True, "null": True}
@@ -50,12 +50,12 @@ class MailSettings(models.Model):
         ('finished', 'Завершена'),
         ]
 
-    send_time = models.DateTimeField(verbose_name='Время отправки рассылки')
+    send_time = models.DateTimeField(default=timezone.now, verbose_name='Время отправки рассылки')
     periodicity = models.CharField(max_length=50, choices=periods, verbose_name='Периодичность')
     client = models.ManyToManyField(Client, verbose_name='Клиент')
     status = models.CharField(max_length=50, choices=statuses, verbose_name='Статус')
     message = models.ForeignKey(Message, on_delete=models.CASCADE, verbose_name='Сообщение', **NULLABLE)
-    owner = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Владелец')
+    owner = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Владелец', **NULLABLE)
 
     def __str__(self):
         return f'{self.client} {self.send_time}'

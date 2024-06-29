@@ -47,6 +47,10 @@ class ClientListView(LoginRequiredMixin, ListView):
 
     model = Client
 
+    def get_queryset(self):
+        user = self.request.user
+        return super().get_queryset().filter(owner=user)
+
 
 class ClientDetailView(LoginRequiredMixin, DetailView):
     """Контроллер детального просмотра клиента"""
@@ -96,6 +100,10 @@ class MessageListView(LoginRequiredMixin, ListView):
     """Контроллер списка сообщений"""
 
     model = Message
+
+    def get_queryset(self):
+        user = self.request.user
+        return super().get_queryset().filter(owner=user)
 
 
 class MessageDetailView(LoginRequiredMixin, DetailView):
@@ -147,6 +155,12 @@ class MailSettingsListView(LoginRequiredMixin, ListView):
 
     model = MailSettings
 
+    def get_queryset(self):
+        user = self.request.user
+        if user.has_perm('mailing.can_view_mail_settings'):
+            return super().get_queryset()
+        return super().get_queryset().filter(owner=user)
+
 
 class MailSettingsDetailView(LoginRequiredMixin, DetailView):
     """Контроллер детального просмотра настройки рассылки"""
@@ -190,7 +204,11 @@ class MailingAttemptListView(LoginRequiredMixin, ListView):
     """Контроллер списка попыток рассылки"""
 
     model = MailingAttempt
-    template_name ='mailing/mailing_attempt_list.html'
+    template_name = 'mailing/mailing_attempt_list.html'
 
-    
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        mailing_pk = self.kwargs.get('pk')
+        queryset = queryset.filter(mailing__pk=mailing_pk)
+        return queryset
 
