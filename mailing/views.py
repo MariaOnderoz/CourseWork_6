@@ -208,7 +208,7 @@ class MailingAttemptListView(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         queryset = super().get_queryset()
-        mailing_pk = self.kwargs.get('pk')
-        queryset = queryset.filter(mailing__pk=mailing_pk)
+        mail_settings_pk = self.kwargs.get('pk')
+        queryset = queryset.filter(mail_settings__pk=mail_settings_pk)
         return queryset
 

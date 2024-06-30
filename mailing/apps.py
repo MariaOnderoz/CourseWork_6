@@ -7,6 +7,3 @@ class MailingConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
     name = 'mailing'
 
-    def ready(self):
-        sleep(2)
-        call_command('start_mailing')
