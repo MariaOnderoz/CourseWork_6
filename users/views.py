@@ -51,7 +51,7 @@ class ProfileView(UpdateView):
         user = self.request.user
         if user.has_perm("users.can_view_user") and user.has_perm("users.can_block_user"):
             return UserModeratorForm
-        raise UserProfileForm
+        return UserProfileForm
 
 
 def generate_new_password(request):

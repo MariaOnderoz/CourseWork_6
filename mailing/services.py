@@ -13,7 +13,7 @@ def send_mailing():
     """Функция отправки рассылки"""
     zone = pytz.timezone(settings.TIME_ZONE)
     current_datetime = datetime.now(zone)
-    mailings = MailSettings.objects.filter(status="Запущена")
+    mailings = MailSettings.objects.filter(status="started")
 
     for mailing in mailings:
 
@@ -31,11 +31,11 @@ def send_mailing():
                     fail_silently=False
                 )
 
-                if mailing.frequency == period_mailing[0]:
+                if mailing.periodicity == "daily":
                     mailing.send_time += timedelta(days=1)
-                elif mailing.frequency == period_mailing[1]:
-                    mailing.send_time += timedelta(weeks=1)
-                elif mailing.frequency == period_mailing[2]:
+                elif mailing.periodicity == "weekly":
+                    mailing.send_time += timedelta(days=7)
+                elif mailing.periodicity == "monthly":
                     mailing.send_time += timedelta(days=30)
 
                 mailing.save()
@@ -49,9 +49,10 @@ def send_mailing():
 
             finally:
                 MailingAttempt.objects.create(
-                    mailing=mailing,
+                    last_sending=datetime.now(zone),
                     status=status,
-                    server_response=server_responce,
+                    server_responce=server_responce,
+                    mail_settings=mailing,
                 )
 
 
